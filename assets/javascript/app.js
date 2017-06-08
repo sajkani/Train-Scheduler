@@ -48,16 +48,15 @@ $("#addTrain").on("click", function() {
 database.ref().on("child_added", function(snapshot) {
   console.log(snapshot.val());
 
-
   trainName = snapshot.val().trainName;
   destination = snapshot.val().destination;
   firstTrainTime = snapshot.val().firstTrainTime;
   frequency = snapshot.val().frequency;
 
 
-  // moment.js methods for time calls and calculations.
+  // moment.js methods
   var firstTrainMoment = moment(firstTrainTime, 'HH:mm');
-  var currentMoment = moment(); //
+  var currentMoment = moment();
 
   var minutesSinceFirstArrival = currentMoment.diff(firstTrainMoment, 'minutes');
   var minutesSinceLastArrival = minutesSinceFirstArrival % frequency;
